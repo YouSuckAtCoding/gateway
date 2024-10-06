@@ -1,0 +1,40 @@
+server:
+  port: 8081
+  servlet:
+    encoding:
+      force-response: true
+      charset: UTF-8
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    config-url: /v3/api-docs/swagger-config
+    path: /gt/swagger-ui.html
+    urls:
+      -   name: gateway-service
+          url: /v3/api-docs
+      -   name: api-service
+          url: http://host.docker.internal:8086/api/v3/api-docs
+      -   name: email-service
+          url: http://host.docker.internal:8080/email/v3/api-docs
+
+
+management.endpoints.web.exposure.include: '*'
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
+
+
+
+
+
+
+
